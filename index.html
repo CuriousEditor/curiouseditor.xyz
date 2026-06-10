@@ -1,7 +1,824 @@
 <!DOCTYPE html>
-<html>
-<head><title>Curious Editor</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curious Editor — Pushpendra R Parihar</title>
+  <meta name="description" content="Freelance Video Editor & Colorist based in Noida. YouTube Edits, Reels, Color Grading, Motion Graphics, Sound Design." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sand: #EDEADE;
+      --green: #1a4a3a;
+      --green-mid: #2C5F4A;
+      --text-dark: #0f2d22;
+      --text-muted: #4a6b5a;
+      --text-faint: #7a9a8a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--sand);
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, svg { display: block; max-width: 100%; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--sand);
+      border-bottom: 1px solid rgba(26,74,58,0.1);
+      padding: 0 5vw;
+      height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .film-frame {
+      width: 34px; height: 34px;
+      background: var(--green);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 3vw, 32px);
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.4px;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-cta {
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      background: var(--green) !important;
+      color: var(--sand) !important;
+      padding: 9px 20px !important;
+      border-radius: 4px !important;
+      letter-spacing: 0.8px !important;
+      text-transform: uppercase !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--text-dark) !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--sand);
+      border-bottom: 1px solid rgba(26,74,58,0.12);
+      padding: 24px 5vw;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 199;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-size: 15px;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .mobile-menu .nav-cta {
+      font-size: 12px !important;
+      padding: 12px 24px !important;
+      text-align: center !important;
+      border-radius: 4px !important;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: clamp(40px, 8vw, 96px) 5vw clamp(48px, 7vw, 80px);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: clamp(20px, 4vw, 32px);
+    }
+
+    .eyebrow-line { width: 32px; height: 1px; background: var(--green-mid); flex-shrink: 0; }
+
+    .eyebrow-text {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+    }
+
+    .hero-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 15vw, 128px);
+      line-height: 0.88;
+      color: var(--green);
+      letter-spacing: 1px;
+      margin-bottom: clamp(24px, 4vw, 40px);
+    }
+
+    .hero-headline .outline {
+      -webkit-text-stroke: 2.5px var(--green);
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: clamp(14px, 1.6vw, 16px);
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 12px;
+    }
+
+    .hero-punctual {
+      font-size: 13px;
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: clamp(24px, 4vw, 36px);
+      flex-wrap: wrap;
+    }
+
+    .hero-punctual i { color: var(--green-mid); font-size: 15px; }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: var(--green);
+      color: var(--sand);
+      padding: 14px 28px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover { background: var(--text-dark); }
+
+    .btn-ghost {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--green);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: rgba(26,74,58,0.35);
+      text-align: left;
+      transition: text-decoration-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-ghost:hover { text-decoration-color: var(--green); }
+
+    /* Stats */
+    .stats-row {
+      display: flex;
+      gap: clamp(24px, 5vw, 56px);
+      padding-top: clamp(28px, 4vw, 44px);
+      border-top: 1px solid rgba(26,74,58,0.12);
+      margin-top: clamp(40px, 6vw, 64px);
+      flex-wrap: wrap;
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 6vw, 56px);
+      color: var(--green);
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-top: 4px;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--green);
+      padding: clamp(48px, 8vw, 96px) 5vw;
+    }
+
+    .about-inner {
+      display: flex;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .about-logo-wrap {
+      flex-shrink: 0;
+      width: clamp(80px, 12vw, 120px);
+      height: clamp(80px, 12vw, 120px);
+      background: rgba(237,234,222,0.08);
+      border: 1px solid rgba(237,234,222,0.15);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .about-logo-wrap svg { width: 55%; height: 55%; }
+
+    .about-content { flex: 1; min-width: 260px; }
+
+    .sec-eyebrow {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+
+    .sec-eyebrow-line { width: 24px; height: 1px; background: rgba(237,234,222,0.3); flex-shrink: 0; }
+
+    .sec-eyebrow-text {
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: rgba(237,234,222,0.45);
+    }
+
+    .sec-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: 1px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .sec-title-light { color: var(--sand); }
+    .sec-title-dark { color: var(--green); }
+
+    .about-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(237,234,222,0.45);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .about-bio {
+      font-size: clamp(14px, 1.6vw, 16px);
+      color: rgba(237,234,222,0.82);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .about-location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: rgba(237,234,222,0.42);
+    }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background: var(--sand);
+      padding: clamp(48px, 8vw, 96px) 5vw;
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: clamp(28px, 4vw, 48px);
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .turnaround-tag {
+      font-size: 12px;
+      color: var(--green-mid);
+      background: rgba(26,74,58,0.07);
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(26,74,58,0.14);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(26,74,58,0.12);
+      border: 1px solid rgba(26,74,58,0.12);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--sand);
+      padding: clamp(20px, 3vw, 32px) clamp(18px, 2.5vw, 28px);
+      transition: background 0.2s;
+    }
+
+    .service-card:hover { background: rgba(26,74,58,0.04); }
+
+    .service-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 12px;
+      color: rgba(26,74,58,0.22);
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: clamp(12px, 1.2vw, 13px);
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── TOOLS ─── */
+    .tools-strip {
+      background: var(--green);
+      padding: clamp(28px, 4vw, 44px) 5vw;
+      display: flex;
+      align-items: center;
+      gap: clamp(20px, 4vw, 48px);
+      flex-wrap: wrap;
+    }
+
+    .tools-label {
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(237,234,222,0.32);
+      flex-shrink: 0;
+    }
+
+    .tools-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .tool-pill {
+      font-size: 12px;
+      font-weight: 500;
+      background: rgba(237,234,222,0.07);
+      color: rgba(237,234,222,0.72);
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(237,234,222,0.11);
+      white-space: nowrap;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--text-dark);
+      padding: clamp(48px, 8vw, 96px) 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: clamp(32px, 5vw, 60px);
+      flex-wrap: wrap;
+    }
+
+    .contact-left { flex: 1; min-width: 260px; }
+
+    .contact-left h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 7vw, 64px);
+      color: var(--sand);
+      letter-spacing: 1px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .contact-left p {
+      font-size: 13px;
+      color: rgba(237,234,222,0.42);
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+
+    .contact-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 40px; height: 40px;
+      background: rgba(237,234,222,0.06);
+      border: 1px solid rgba(237,234,222,0.11);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      color: rgba(237,234,222,0.48);
+      font-size: 18px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .social-icon:hover {
+      background: rgba(237,234,222,0.12);
+      color: var(--sand);
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: clamp(200px, 30vw, 280px);
+    }
+
+    .contact-btn-main {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      background: var(--sand);
+      color: var(--text-dark);
+      padding: 16px 32px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.2s;
+      display: block;
+    }
+
+    .contact-btn-main:hover { opacity: 0.88; }
+
+    .contact-btn-wa {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      background: transparent;
+      color: rgba(237,234,222,0.52);
+      padding: 14px 32px;
+      border-radius: 4px;
+      border: 1px solid rgba(237,234,222,0.14);
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-btn-wa:hover {
+      border-color: rgba(237,234,222,0.35);
+      color: var(--sand);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--text-dark);
+      border-top: 1px solid rgba(237,234,222,0.07);
+      padding: 18px 5vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer span {
+      font-size: 11px;
+      color: rgba(237,234,222,0.22);
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── TABLET (max 900px) ─── */
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ─── MOBILE (max 640px) ─── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-headline { line-height: 0.9; }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-header { flex-direction: column; align-items: flex-start; }
+      .turnaround-tag { white-space: normal; }
+
+      #contact { flex-direction: column; align-items: flex-start; }
+      .contact-right { width: 100%; }
+
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
 <body>
-<h1>Coming Soon</h1>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="film-frame">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="4" width="20" height="16" rx="2" stroke="#EDEADE" stroke-width="1.5"/>
+          <rect x="2" y="4" width="3" height="16" fill="#EDEADE" rx="1"/>
+          <rect x="19" y="4" width="3" height="16" fill="#EDEADE" rx="1"/>
+          <rect x="5" y="7" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="5" y="11" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="5" y="15" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="17" y="7" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="17" y="11" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="17" y="15" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+        </svg>
+      </div>
+      <span class="logo-text">Curious Editor</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact" class="nav-cta">Hire Me</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+    <a href="#services" onclick="closeMobileMenu()">Services</a>
+    <a href="#contact" class="nav-cta" onclick="closeMobileMenu()">Hire Me</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Freelance Video Editor</span>
+    </div>
+    <div class="hero-headline">
+      <div>Bringing</div>
+      <div class="outline">Stories</div>
+      <div>To Life</div>
+    </div>
+    <p class="hero-desc">Every frame has a story. I bring those stories to life through thoughtful edits, cinematic visuals, and a love for meaningful storytelling.</p>
+    <p class="hero-punctual">
+      <i class="ti ti-clock-check"></i>
+      Punctual by principle — deadlines are non-negotiable.
+    </p>
+    <div class="hero-btns">
+      <a href="mailto:curiouseditor.xyz@gmail.com" class="btn-primary">
+        Mail Me <i class="ti ti-arrow-right"></i>
+      </a>
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Global Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2Y</div>
+        <div class="stat-label">Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Stories Told</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-logo-wrap">
+        <svg viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="4" width="20" height="16" rx="2" stroke="#EDEADE" stroke-width="1.5"/>
+          <rect x="2" y="4" width="3" height="16" fill="#EDEADE" rx="1"/>
+          <rect x="19" y="4" width="3" height="16" fill="#EDEADE" rx="1"/>
+          <rect x="5" y="7" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="5" y="11" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="5" y="15" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="17" y="7" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="17" y="11" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+          <rect x="17" y="15" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+        </svg>
+      </div>
+      <div class="about-content">
+        <div class="sec-eyebrow">
+          <div class="sec-eyebrow-line"></div>
+          <span class="sec-eyebrow-text">About</span>
+        </div>
+        <div class="sec-title sec-title-light">Pushpendra R Parihar</div>
+        <p class="about-name">Video Editor & Colorist</p>
+        <p class="about-bio">"Every frame has a story. I bring those stories to life through thoughtful edits, cinematic visuals, and a love for meaningful storytelling."</p>
+        <p class="about-location">
+          <i class="ti ti-map-pin"></i>
+          Noida, Uttar Pradesh, India
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-header">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:24px;height:1px;background:rgba(26,74,58,0.28);flex-shrink:0;"></div>
+          <span style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-faint);">What I Do</span>
+        </div>
+        <div class="sec-title sec-title-dark">Services</div>
+      </div>
+      <div class="turnaround-tag">
+        <i class="ti ti-clock" style="font-size:14px;flex-shrink:0;"></i>
+        Never miss a deadline · Reverts within hours
+      </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>YouTube Editing</h3>
+        <p>Long-form storytelling with tight pacing, music sync, and narrative structure that keeps viewers watching.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Reels & Short Form</h3>
+        <p>Hook-driven short-form content optimized for algorithm and attention — built for real engagement.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Color Grading</h3>
+        <p>Cinematic color science using DaVinci Resolve — transforming flat footage into a premium visual experience.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Motion Graphics</h3>
+        <p>Animated titles, transitions, and visual effects crafted in After Effects to elevate every cut.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <h3>Sound Design</h3>
+        <p>Balanced audio mixing, SFX layering, and music synchronization for a complete sensory experience.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <h3>Cinematic Edits</h3>
+        <p>Film-quality storytelling with obsessive attention to pacing, tone, and every frame.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <div class="tools-strip">
+    <span class="tools-label">Tools</span>
+    <div class="tools-row">
+      <span class="tool-pill">DaVinci Resolve</span>
+      <span class="tool-pill">Premiere Pro</span>
+      <span class="tool-pill">After Effects</span>
+      <span class="tool-pill">Photoshop</span>
+      <span class="tool-pill">CapCut Pro</span>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-left">
+      <h2>Let's Work<br>Together</h2>
+      <p>curiouseditor.xyz@gmail.com</p>
+      <p>Noida, India · Available for remote projects worldwide</p>
+      <div class="contact-social">
+        <a href="#" class="social-icon" title="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" class="social-icon" title="YouTube"><i class="ti ti-brand-youtube"></i></a>
+        <a href="#" class="social-icon" title="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+        <a href="#" class="social-icon" title="Twitter / X"><i class="ti ti-brand-x"></i></a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <a href="mailto:curiouseditor.xyz@gmail.com" class="contact-btn-main">Get In Touch</a>
+      <a href="https://wa.me/918368931257" target="_blank" rel="noopener" class="contact-btn-wa">
+        <i class="ti ti-brand-whatsapp" style="font-size:16px;flex-shrink:0;"></i>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Curious Editor — Pushpendra R Parihar</span>
+    <span>curiouseditor.xyz</span>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+  </script>
 </body>
 </html>
