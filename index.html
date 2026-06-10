@@ -7,599 +7,373 @@
   <meta name="description" content="Freelance Video Editor & Colorist based in Noida. YouTube Edits, Reels, Color Grading, Motion Graphics, Sound Design." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --sand: #EDEADE;
-      --green: #1a4a3a;
-      --green-mid: #2C5F4A;
-      --text-dark: #0f2d22;
-      --text-muted: #4a6b5a;
-      --text-faint: #7a9a8a;
-    }
-
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--sand);
       font-family: 'Space Grotesk', sans-serif;
-      color: var(--text-dark);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      background: #f0e8d0;
     }
-
     img, svg { display: block; max-width: 100%; }
 
-    /* ─── NAV ─── */
+    /* ── NAV ── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      background: var(--sand);
-      border-bottom: 1px solid rgba(26,74,58,0.1);
-      padding: 0 5vw;
-      height: 64px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: sticky; top: 0; z-index: 200;
+      background: #1c1c1c;
+      border-bottom: 1px solid rgba(232,98,26,0.2);
+      padding: 0 5vw; height: 64px;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
     .film-frame {
-      width: 34px; height: 34px;
-      background: var(--green);
-      border-radius: 4px;
-      display: flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; background: #E8621A;
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
     }
-
-    .logo-text {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-dark);
-      letter-spacing: 0.3px;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: clamp(16px, 3vw, 32px);
-    }
-
-    .nav-links a {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-decoration: none;
-      letter-spacing: 0.4px;
-      transition: color 0.2s;
-      white-space: nowrap;
-    }
-
-    .nav-links a:hover { color: var(--green); }
-
+    .logo-text { font-size: 15px; font-weight: 600; color: #f0e8d0; letter-spacing: 0.3px; white-space: nowrap; }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px,3vw,32px); }
+    .nav-links a { font-size: 13px; color: rgba(240,232,208,0.6); text-decoration: none; letter-spacing: 0.4px; transition: color 0.2s; white-space: nowrap; }
+    .nav-links a:hover { color: #E8621A; }
     .nav-cta {
-      font-size: 11px !important;
-      font-weight: 700 !important;
-      background: var(--green) !important;
-      color: var(--sand) !important;
-      padding: 9px 20px !important;
-      border-radius: 4px !important;
-      letter-spacing: 0.8px !important;
-      text-transform: uppercase !important;
-      transition: background 0.2s !important;
+      font-size: 11px !important; font-weight: 700 !important;
+      background: #E8621A !important; color: #1c1c1c !important;
+      padding: 9px 20px !important; border-radius: 3px !important;
+      letter-spacing: 0.8px !important; text-transform: uppercase !important;
+      transition: opacity 0.2s !important;
     }
-
-    .nav-cta:hover { background: var(--text-dark) !important; }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 24px; height: 2px;
-      background: var(--green);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
+    .nav-cta:hover { opacity: 0.85 !important; color: #1c1c1c !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #f0e8d0; border-radius: 2px; transition: all 0.3s; }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
     .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 64px; left: 0; right: 0;
-      background: var(--sand);
-      border-bottom: 1px solid rgba(26,74,58,0.12);
-      padding: 24px 5vw;
-      flex-direction: column;
-      gap: 20px;
-      z-index: 199;
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: #1c1c1c; border-bottom: 1px solid rgba(232,98,26,0.2);
+      padding: 24px 5vw; flex-direction: column; gap: 20px; z-index: 199;
     }
-
     .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 15px; color: #f0e8d0; text-decoration: none; font-weight: 500; }
+    .mobile-menu .nav-cta { text-align: center; color: #1c1c1c !important; }
 
-    .mobile-menu a {
-      font-size: 15px;
-      color: var(--text-dark);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .mobile-menu .nav-cta {
-      font-size: 12px !important;
-      padding: 12px 24px !important;
-      text-align: center !important;
-      border-radius: 4px !important;
-    }
-
-    /* ─── HERO ─── */
-    .hero {
-      padding: clamp(40px, 8vw, 96px) 5vw clamp(48px, 7vw, 80px);
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: clamp(20px, 4vw, 32px);
-    }
-
-    .eyebrow-line { width: 32px; height: 1px; background: var(--green-mid); flex-shrink: 0; }
-
-    .eyebrow-text {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--green-mid);
-    }
-
-    .hero-headline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(64px, 15vw, 128px);
-      line-height: 0.88;
-      color: var(--green);
-      letter-spacing: 1px;
-      margin-bottom: clamp(24px, 4vw, 40px);
-    }
-
-    .hero-headline .outline {
-      -webkit-text-stroke: 2.5px var(--green);
-      color: transparent;
-    }
-
-    .hero-desc {
-      font-size: clamp(14px, 1.6vw, 16px);
-      color: var(--text-muted);
-      line-height: 1.75;
-      max-width: 560px;
-      margin-bottom: 12px;
-    }
-
-    .hero-punctual {
-      font-size: 13px;
-      color: var(--text-faint);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: clamp(24px, 4vw, 36px);
-      flex-wrap: wrap;
-    }
-
-    .hero-punctual i { color: var(--green-mid); font-size: 15px; }
-
-    .hero-btns {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      background: var(--green);
-      color: var(--sand);
-      padding: 14px 28px;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-
-    .btn-primary:hover { background: var(--text-dark); }
-
-    .btn-ghost {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--green);
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-color: rgba(26,74,58,0.35);
-      text-align: left;
-      transition: text-decoration-color 0.2s;
-      white-space: nowrap;
-    }
-
-    .btn-ghost:hover { text-decoration-color: var(--green); }
-
-    /* Stats */
-    .stats-row {
-      display: flex;
-      gap: clamp(24px, 5vw, 56px);
-      padding-top: clamp(28px, 4vw, 44px);
-      border-top: 1px solid rgba(26,74,58,0.12);
-      margin-top: clamp(40px, 6vw, 64px);
-      flex-wrap: wrap;
-    }
-
-    .stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(40px, 6vw, 56px);
-      color: var(--green);
-      line-height: 1;
-      letter-spacing: 1px;
-    }
-
-    .stat-label {
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--text-faint);
-      margin-top: 4px;
-    }
-
-    /* ─── ABOUT ─── */
-    #about {
-      background: var(--green);
-      padding: clamp(48px, 8vw, 96px) 5vw;
-    }
-
-    .about-inner {
-      display: flex;
-      gap: clamp(32px, 6vw, 80px);
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    .about-logo-wrap {
-      flex-shrink: 0;
-      width: clamp(80px, 12vw, 120px);
-      height: clamp(80px, 12vw, 120px);
-      background: rgba(237,234,222,0.08);
-      border: 1px solid rgba(237,234,222,0.15);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .about-logo-wrap svg { width: 55%; height: 55%; }
-
-    .about-content { flex: 1; min-width: 260px; }
-
-    .sec-eyebrow {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
-    }
-
-    .sec-eyebrow-line { width: 24px; height: 1px; background: rgba(237,234,222,0.3); flex-shrink: 0; }
-
-    .sec-eyebrow-text {
-      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-      color: rgba(237,234,222,0.45);
-    }
-
-    .sec-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(36px, 5vw, 56px);
-      letter-spacing: 1px;
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
-    .sec-title-light { color: var(--sand); }
-    .sec-title-dark { color: var(--green); }
-
-    .about-name {
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(237,234,222,0.45);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .about-bio {
-      font-size: clamp(14px, 1.6vw, 16px);
-      color: rgba(237,234,222,0.82);
-      line-height: 1.8;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-
-    .about-location {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: rgba(237,234,222,0.42);
-    }
-
-    /* ─── SERVICES ─── */
-    #services {
-      background: var(--sand);
-      padding: clamp(48px, 8vw, 96px) 5vw;
-    }
-
-    .services-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: clamp(28px, 4vw, 48px);
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .turnaround-tag {
-      font-size: 12px;
-      color: var(--green-mid);
-      background: rgba(26,74,58,0.07);
-      padding: 8px 14px;
-      border-radius: 20px;
-      border: 1px solid rgba(26,74,58,0.14);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(26,74,58,0.12);
-      border: 1px solid rgba(26,74,58,0.12);
-      border-radius: 8px;
+    /* ── HERO — dark grid ── */
+    .hero-section {
+      background: #1c1c1c;
+      position: relative; min-height: 540px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: clamp(48px,8vw,80px) 5vw clamp(40px,6vw,64px);
       overflow: hidden;
     }
-
-    .service-card {
-      background: var(--sand);
-      padding: clamp(20px, 3vw, 32px) clamp(18px, 2.5vw, 28px);
-      transition: background 0.2s;
+    .grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px; pointer-events: none;
     }
+    .dots-nav {
+      position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-1 { background: #E8621A; }
+    .dot-2 { background: #c44d10; }
+    .dot-3 { background: #a03a08; }
 
-    .service-card:hover { background: rgba(26,74,58,0.04); }
+    /* Floating handwritten labels */
+    .float-label {
+      position: absolute; font-family: 'Caveat', cursive;
+      font-size: clamp(15px,2.2vw,22px); color: #E8621A; opacity: 0.8;
+      z-index: 3; white-space: nowrap; pointer-events: none;
+    }
+    .fl-1 { top: 18%; left: 6%; }
+    .fl-2 { top: 12%; left: 44%; }
+    .fl-3 { top: 16%; right: 5%; }
+    .fl-4 { bottom: 22%; left: 4%; }
+    .fl-5 { bottom: 16%; left: 42%; }
+    .fl-6 { bottom: 20%; right: 6%; }
 
-    .service-num {
+    .hero-title-3d {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 12px;
-      color: rgba(26,74,58,0.22);
-      letter-spacing: 1px;
-      margin-bottom: 14px;
+      font-size: clamp(72px,16vw,140px);
+      color: #E8621A;
+      text-shadow: 4px 4px 0 #8B3A0F, 8px 8px 0 #5a2508;
+      letter-spacing: 3px; line-height: 0.95; text-align: center;
+      position: relative; z-index: 2;
     }
 
-    .service-card h3 {
-      font-size: clamp(13px, 1.4vw, 15px);
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 8px;
+    .hero-sub {
+      margin-top: 20px; position: relative; z-index: 2;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: center;
     }
-
-    .service-card p {
-      font-size: clamp(12px, 1.2vw, 13px);
-      color: var(--text-muted);
-      line-height: 1.65;
+    .eyebrow-tag {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(240,232,208,0.5); display: flex; align-items: center; gap: 10px;
     }
-
-    /* ─── TOOLS ─── */
-    .tools-strip {
-      background: var(--green);
-      padding: clamp(28px, 4vw, 44px) 5vw;
-      display: flex;
-      align-items: center;
-      gap: clamp(20px, 4vw, 48px);
-      flex-wrap: wrap;
+    .eyebrow-tag::before { content: ''; width: 28px; height: 1px; background: rgba(232,98,26,0.5); }
+    .avail-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(232,98,26,0.12); border: 1px solid rgba(232,98,26,0.3);
+      color: #E8621A; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+      padding: 6px 14px; border-radius: 20px;
     }
+    .avail-dot { width: 6px; height: 6px; background: #4CAF50; border-radius: 50%; flex-shrink: 0; }
 
-    .tools-label {
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: rgba(237,234,222,0.32);
-      flex-shrink: 0;
+    /* ── ORANGE MARQUEE ── */
+    .marquee-band { background: #E8621A; padding: 10px 0; overflow: hidden; white-space: nowrap; }
+    .marquee-inner { display: inline-block; animation: scroll 18s linear infinite; }
+    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: inline-block; font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px; letter-spacing: 2px; color: #1c1c1c; margin: 0 20px;
     }
+    .marquee-item::after { content: '✦'; margin-left: 20px; opacity: 0.4; }
 
-    .tools-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    /* ── ABOUT — paper ── */
+    .about-section {
+      background: #f0e8d0; position: relative;
+      padding: clamp(48px,8vw,80px) 5vw;
+      overflow: hidden;
+    }
+    .paper-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(100,80,40,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100,80,40,0.07) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none;
+    }
+    .about-inner {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,5vw,56px); align-items: start;
+    }
+    .about-greeting {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px,4.5vw,44px); font-weight: 700;
+      color: #1c1c1c; margin-bottom: 16px; line-height: 1.2;
+    }
+    .about-greeting span { color: #E8621A; }
+    .about-name-tag {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: #888; margin-bottom: 16px;
+    }
+    .about-bio {
+      font-size: 14px; color: #4a4a4a; line-height: 1.8; margin-bottom: 16px;
+      font-style: italic;
+    }
+    .about-punctual {
+      font-size: 13px; color: #666; display: flex; align-items: center; gap: 7px;
+      margin-bottom: 28px;
+    }
+    .about-punctual i { color: #E8621A; font-size: 15px; }
+    .hero-btns { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .btn-main {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      background: #E8621A; color: #1c1c1c;
+      padding: 13px 24px; border-radius: 3px; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 7px;
+      text-decoration: none; transition: opacity 0.2s; white-space: nowrap;
+    }
+    .btn-main:hover { opacity: 0.85; }
+    .btn-ghost {
+      font-size: 13px; font-weight: 500; color: #1c1c1c; background: transparent;
+      border: 1.5px solid rgba(28,28,28,0.3); padding: 12px 20px;
+      border-radius: 3px; cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s; white-space: nowrap;
+    }
+    .btn-ghost:hover { border-color: #1c1c1c; }
 
+    /* About right */
+    .about-right { position: relative; z-index: 2; }
+    .about-location {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; color: #666; margin-bottom: 28px;
+    }
+    .about-location i { color: #E8621A; }
+    .stats-row {
+      display: flex; gap: clamp(20px,4vw,40px);
+      padding-top: 24px; border-top: 1px solid rgba(28,28,28,0.12);
+      margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px,5vw,48px); color: #E8621A; line-height: 1;
+      text-shadow: 2px 2px 0 #8B3A0F;
+    }
+    .stat-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-top: 3px; }
+    .tools-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
+    .tools-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .tool-pill {
-      font-size: 12px;
-      font-weight: 500;
-      background: rgba(237,234,222,0.07);
-      color: rgba(237,234,222,0.72);
-      padding: 8px 16px;
-      border-radius: 4px;
-      border: 1px solid rgba(237,234,222,0.11);
-      white-space: nowrap;
+      font-size: 11px; font-weight: 500;
+      background: #1c1c1c; color: #f0e8d0;
+      padding: 7px 14px; border-radius: 3px;
     }
 
-    /* ─── CONTACT ─── */
+    /* ── SERVICES — post-it ── */
+    .services-section {
+      background: #f0e8d0; position: relative;
+      padding: clamp(40px,6vw,72px) 5vw clamp(48px,7vw,80px);
+      overflow: hidden;
+    }
+    .services-section::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(100,80,40,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100,80,40,0.07) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none;
+    }
+    .vert-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px,9vw,88px); color: #E8621A;
+      text-shadow: 3px 3px 0 #8B3A0F;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      transform: rotate(180deg);
+      position: absolute; left: 0; top: 0; bottom: 0;
+      display: flex; align-items: center;
+      padding: 20px 0; line-height: 1; letter-spacing: 4px; z-index: 2;
+    }
+    .services-header {
+      position: relative; z-index: 2;
+      margin-left: clamp(60px,8vw,96px);
+      margin-bottom: 28px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .services-title {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(20px,3vw,28px); color: #1c1c1c; font-weight: 700;
+    }
+    .turnaround-tag {
+      font-size: 12px; color: #E8621A;
+      background: rgba(232,98,26,0.08); border: 1px solid rgba(232,98,26,0.25);
+      padding: 7px 14px; border-radius: 20px;
+      display: flex; align-items: center; gap: 6px; white-space: nowrap;
+    }
+    .services-grid {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 20px; margin-left: clamp(60px,8vw,96px);
+    }
+    /* Post-it card */
+    .postit {
+      background: #c4956a;
+      border: 2px solid #E8621A; border-radius: 4px 4px 0 0;
+      padding: clamp(16px,2.5vw,24px) clamp(14px,2vw,20px) 28px;
+      position: relative;
+      clip-path: polygon(0 0,100% 0,100% 83%,96% 89%,92% 83%,88% 89%,84% 83%,80% 89%,76% 83%,72% 89%,68% 83%,64% 89%,60% 83%,56% 89%,52% 83%,48% 89%,44% 83%,40% 89%,36% 83%,32% 89%,28% 83%,24% 89%,20% 83%,16% 89%,12% 83%,8% 89%,4% 83%,0 83%);
+      transition: transform 0.2s;
+    }
+    .postit:hover { transform: translateY(-3px) rotate(0.5deg); }
+    .tape {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      width: 38px; height: 22px; background: rgba(210,200,110,0.72); border-radius: 2px;
+    }
+    .postit-num {
+      font-family: 'Bebas Neue', sans-serif; font-size: 11px;
+      color: rgba(30,20,10,0.35); letter-spacing: 1px; margin-bottom: 10px;
+    }
+    .postit h3 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(17px,2.2vw,21px); font-weight: 700;
+      color: #1c1c1c; margin-bottom: 7px; line-height: 1.2;
+    }
+    .postit p { font-size: 12px; color: rgba(30,20,10,0.58); line-height: 1.55; }
+
+    /* ── TOOLS TICKER ── */
+    .ticker-band {
+      background: #1c1c1c; padding: 12px 0; overflow: hidden; white-space: nowrap;
+      border-top: 1px solid rgba(232,98,26,0.2);
+    }
+    .ticker-inner { display: inline-flex; gap: 28px; animation: scroll 22s linear infinite; }
+    .ticker-item {
+      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(240,232,208,0.35); display: flex; align-items: center; gap: 8px;
+    }
+    .ticker-dot { width: 4px; height: 4px; background: #E8621A; border-radius: 50%; opacity: 0.5; flex-shrink: 0; }
+
+    /* ── CONTACT ── */
     #contact {
-      background: var(--text-dark);
-      padding: clamp(48px, 8vw, 96px) 5vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: clamp(32px, 5vw, 60px);
-      flex-wrap: wrap;
+      background: #1c1c1c; position: relative; overflow: hidden;
+      padding: clamp(48px,8vw,80px) 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: clamp(28px,5vw,56px); flex-wrap: wrap;
     }
-
-    .contact-left { flex: 1; min-width: 260px; }
-
+    #contact::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .contact-left { position: relative; z-index: 2; flex: 1; min-width: 240px; }
     .contact-left h2 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(40px, 7vw, 64px);
-      color: var(--sand);
-      letter-spacing: 1px;
-      line-height: 1;
-      margin-bottom: 12px;
+      font-size: clamp(40px,7vw,68px); color: #f0e8d0;
+      text-shadow: 3px 3px 0 #4a3010; line-height: 1; margin-bottom: 10px; letter-spacing: 1px;
     }
-
-    .contact-left p {
-      font-size: 13px;
-      color: rgba(237,234,222,0.42);
-      margin-bottom: 4px;
-      line-height: 1.6;
-    }
-
-    .contact-social {
-      display: flex;
-      gap: 10px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-
+    .contact-left h2 span { color: #E8621A; }
+    .contact-left p { font-size: 13px; color: rgba(240,232,208,0.42); margin-bottom: 4px; line-height: 1.6; }
+    .contact-social { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
     .social-icon {
       width: 40px; height: 40px;
-      background: rgba(237,234,222,0.06);
-      border: 1px solid rgba(237,234,222,0.11);
-      border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none;
-      color: rgba(237,234,222,0.48);
-      font-size: 18px;
+      background: rgba(232,98,26,0.08); border: 1px solid rgba(232,98,26,0.2);
+      border-radius: 5px; display: flex; align-items: center; justify-content: center;
+      text-decoration: none; color: rgba(240,232,208,0.45); font-size: 18px;
       transition: background 0.2s, color 0.2s;
     }
-
-    .social-icon:hover {
-      background: rgba(237,234,222,0.12);
-      color: var(--sand);
-    }
-
+    .social-icon:hover { background: rgba(232,98,26,0.2); color: #E8621A; }
     .contact-right {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      width: clamp(200px, 30vw, 280px);
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; gap: 12px;
+      width: clamp(200px,30vw,280px);
     }
-
     .contact-btn-main {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      background: var(--sand);
-      color: var(--text-dark);
-      padding: 16px 32px;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      background: #E8621A; color: #1c1c1c;
+      padding: 15px 28px; border-radius: 3px; border: none; cursor: pointer;
+      text-decoration: none; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
       transition: opacity 0.2s;
-      display: block;
     }
-
-    .contact-btn-main:hover { opacity: 0.88; }
-
+    .contact-btn-main:hover { opacity: 0.85; }
     .contact-btn-wa {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.6px;
-      background: transparent;
-      color: rgba(237,234,222,0.52);
-      padding: 14px 32px;
-      border-radius: 4px;
-      border: 1px solid rgba(237,234,222,0.14);
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      font-size: 12px; font-weight: 600;
+      background: transparent; color: rgba(240,232,208,0.5);
+      padding: 13px 28px; border-radius: 3px;
+      border: 1px solid rgba(240,232,208,0.14); cursor: pointer;
+      text-decoration: none; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
       transition: border-color 0.2s, color 0.2s;
     }
+    .contact-btn-wa:hover { border-color: rgba(232,98,26,0.4); color: #E8621A; }
 
-    .contact-btn-wa:hover {
-      border-color: rgba(237,234,222,0.35);
-      color: var(--sand);
-    }
-
-    /* ─── FOOTER ─── */
+    /* ── FOOTER ── */
     footer {
-      background: var(--text-dark);
-      border-top: 1px solid rgba(237,234,222,0.07);
+      background: #111; border-top: 1px solid rgba(232,98,26,0.1);
       padding: 18px 5vw;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 8px;
     }
+    footer span { font-size: 11px; color: rgba(240,232,208,0.2); letter-spacing: 0.3px; }
 
-    footer span {
-      font-size: 11px;
-      color: rgba(237,234,222,0.22);
-      letter-spacing: 0.3px;
-    }
-
-    /* ─── TABLET (max 900px) ─── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
     }
-
-    /* ─── MOBILE (max 640px) ─── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-
-      .hero-headline { line-height: 0.9; }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .services-header { flex-direction: column; align-items: flex-start; }
-      .turnaround-tag { white-space: normal; }
-
+      .fl-3, .fl-6 { display: none; }
+      .hero-title-3d { font-size: clamp(56px,18vw,90px); }
+      .about-inner { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; margin-left: 52px; }
+      .vert-label { font-size: 52px; }
       #contact { flex-direction: column; align-items: flex-start; }
       .contact-right { width: 100%; }
-
       footer { flex-direction: column; text-align: center; }
     }
   </style>
@@ -610,16 +384,16 @@
   <nav>
     <a href="#" class="logo">
       <div class="film-frame">
-        <svg viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="4" width="20" height="16" rx="2" stroke="#EDEADE" stroke-width="1.5"/>
-          <rect x="2" y="4" width="3" height="16" fill="#EDEADE" rx="1"/>
-          <rect x="19" y="4" width="3" height="16" fill="#EDEADE" rx="1"/>
-          <rect x="5" y="7" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="5" y="11" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="5" y="15" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="17" y="7" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="17" y="11" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="17" y="15" width="2" height="2" fill="#EDEADE" rx="0.5"/>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="4" width="20" height="16" rx="2" stroke="#f0e8d0" stroke-width="1.5"/>
+          <rect x="2" y="4" width="3" height="16" fill="#f0e8d0" rx="1"/>
+          <rect x="19" y="4" width="3" height="16" fill="#f0e8d0" rx="1"/>
+          <rect x="5" y="7" width="2" height="2" fill="#f0e8d0" rx="0.5"/>
+          <rect x="5" y="11" width="2" height="2" fill="#f0e8d0" rx="0.5"/>
+          <rect x="5" y="15" width="2" height="2" fill="#f0e8d0" rx="0.5"/>
+          <rect x="17" y="7" width="2" height="2" fill="#f0e8d0" rx="0.5"/>
+          <rect x="17" y="11" width="2" height="2" fill="#f0e8d0" rx="0.5"/>
+          <rect x="17" y="15" width="2" height="2" fill="#f0e8d0" rx="0.5"/>
         </svg>
       </div>
       <span class="logo-text">Curious Editor</span>
@@ -642,140 +416,166 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="eyebrow">
-      <div class="eyebrow-line"></div>
-      <span class="eyebrow-text">Freelance Video Editor</span>
+  <section class="hero-section">
+    <div class="grid-bg"></div>
+    <div class="dots-nav">
+      <div class="dot dot-1"></div>
+      <div class="dot dot-2"></div>
+      <div class="dot dot-3"></div>
     </div>
-    <div class="hero-headline">
-      <div>Bringing</div>
-      <div class="outline">Stories</div>
-      <div>To Life</div>
-    </div>
-    <p class="hero-desc">Every frame has a story. I bring those stories to life through thoughtful edits, cinematic visuals, and a love for meaningful storytelling.</p>
-    <p class="hero-punctual">
-      <i class="ti ti-clock-check"></i>
-      Punctual by principle — deadlines are non-negotiable.
-    </p>
-    <div class="hero-btns">
-      <a href="mailto:curiouseditor.xyz@gmail.com" class="btn-primary">
-        Mail Me <i class="ti ti-arrow-right"></i>
-      </a>
-      <a href="#services" class="btn-ghost">View Services</a>
-    </div>
-    <div class="stats-row">
-      <div class="stat-item">
-        <div class="stat-num">50+</div>
-        <div class="stat-label">Global Clients</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">2Y</div>
-        <div class="stat-label">Experience</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">Stories Told</div>
+    <span class="float-label fl-1">YouTube Editing</span>
+    <span class="float-label fl-2">Color Grading</span>
+    <span class="float-label fl-3">Motion Graphics</span>
+    <span class="float-label fl-4">Sound Design</span>
+    <span class="float-label fl-5">Short Form</span>
+    <span class="float-label fl-6">Cinematic Edits</span>
+    <div class="hero-title-3d">CURIOUS<br>EDITOR</div>
+    <div class="hero-sub">
+      <span class="eyebrow-tag">Freelance Video Editor</span>
+      <div class="avail-pill">
+        <div class="avail-dot"></div>
+        Available for work
       </div>
     </div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee-band">
+    <div class="marquee-inner">
+      <span class="marquee-item">Freelance Video Editor</span>
+      <span class="marquee-item">Color Grading</span>
+      <span class="marquee-item">YouTube Editing</span>
+      <span class="marquee-item">Motion Graphics</span>
+      <span class="marquee-item">Noida, India</span>
+      <span class="marquee-item">50+ Clients</span>
+      <span class="marquee-item">2 Years Experience</span>
+      <span class="marquee-item">Freelance Video Editor</span>
+      <span class="marquee-item">Color Grading</span>
+      <span class="marquee-item">YouTube Editing</span>
+      <span class="marquee-item">Motion Graphics</span>
+      <span class="marquee-item">Noida, India</span>
+      <span class="marquee-item">50+ Clients</span>
+      <span class="marquee-item">2 Years Experience</span>
+    </div>
+  </div>
+
   <!-- ABOUT -->
-  <section id="about">
+  <section id="about" class="about-section">
+    <div class="paper-grid"></div>
     <div class="about-inner">
-      <div class="about-logo-wrap">
-        <svg viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="4" width="20" height="16" rx="2" stroke="#EDEADE" stroke-width="1.5"/>
-          <rect x="2" y="4" width="3" height="16" fill="#EDEADE" rx="1"/>
-          <rect x="19" y="4" width="3" height="16" fill="#EDEADE" rx="1"/>
-          <rect x="5" y="7" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="5" y="11" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="5" y="15" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="17" y="7" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="17" y="11" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-          <rect x="17" y="15" width="2" height="2" fill="#EDEADE" rx="0.5"/>
-        </svg>
-      </div>
-      <div class="about-content">
-        <div class="sec-eyebrow">
-          <div class="sec-eyebrow-line"></div>
-          <span class="sec-eyebrow-text">About</span>
-        </div>
-        <div class="sec-title sec-title-light">Pushpendra R Parihar</div>
-        <p class="about-name">Video Editor & Colorist</p>
+      <div class="about-left">
+        <p class="about-greeting">Hey! I am<br><span>Pushpendra</span></p>
+        <p class="about-name-tag">Video Editor & Colorist</p>
         <p class="about-bio">"Every frame has a story. I bring those stories to life through thoughtful edits, cinematic visuals, and a love for meaningful storytelling."</p>
+        <p class="about-punctual">
+          <i class="ti ti-clock-check"></i>
+          Punctual by principle — deadlines are non-negotiable.
+        </p>
+        <div class="hero-btns">
+          <a href="mailto:curiouseditor.xyz@gmail.com" class="btn-main">
+            Mail Me <i class="ti ti-arrow-right"></i>
+          </a>
+          <a href="#services" class="btn-ghost">View Services</a>
+        </div>
+      </div>
+      <div class="about-right">
         <p class="about-location">
           <i class="ti ti-map-pin"></i>
           Noida, Uttar Pradesh, India
         </p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">Global Clients</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">2Y</div>
+            <div class="stat-label">Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Stories Told</div>
+          </div>
+        </div>
+        <p class="tools-label">Tools I Use</p>
+        <div class="tools-row">
+          <span class="tool-pill">DaVinci Resolve</span>
+          <span class="tool-pill">Premiere Pro</span>
+          <span class="tool-pill">After Effects</span>
+          <span class="tool-pill">Photoshop</span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section id="services">
+  <section id="services" class="services-section">
+    <div class="vert-label">SERVICES</div>
     <div class="services-header">
-      <div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:24px;height:1px;background:rgba(26,74,58,0.28);flex-shrink:0;"></div>
-          <span style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-faint);">What I Do</span>
-        </div>
-        <div class="sec-title sec-title-dark">Services</div>
-      </div>
+      <p class="services-title">What I do for you</p>
       <div class="turnaround-tag">
-        <i class="ti ti-clock" style="font-size:14px;flex-shrink:0;"></i>
+        <i class="ti ti-clock" style="font-size:14px;"></i>
         Never miss a deadline · Reverts within hours
       </div>
     </div>
     <div class="services-grid">
-      <div class="service-card">
-        <div class="service-num">01</div>
+      <div class="postit">
+        <div class="tape"></div>
+        <div class="postit-num">01</div>
         <h3>YouTube Editing</h3>
         <p>Long-form storytelling with tight pacing, music sync, and narrative structure that keeps viewers watching.</p>
       </div>
-      <div class="service-card">
-        <div class="service-num">02</div>
+      <div class="postit">
+        <div class="tape"></div>
+        <div class="postit-num">02</div>
         <h3>Reels & Short Form</h3>
         <p>Hook-driven short-form content optimized for algorithm and attention — built for real engagement.</p>
       </div>
-      <div class="service-card">
-        <div class="service-num">03</div>
+      <div class="postit">
+        <div class="tape"></div>
+        <div class="postit-num">03</div>
         <h3>Color Grading</h3>
         <p>Cinematic color science using DaVinci Resolve — transforming flat footage into a premium visual experience.</p>
       </div>
-      <div class="service-card">
-        <div class="service-num">04</div>
+      <div class="postit">
+        <div class="tape"></div>
+        <div class="postit-num">04</div>
         <h3>Motion Graphics</h3>
         <p>Animated titles, transitions, and visual effects crafted in After Effects to elevate every cut.</p>
       </div>
-      <div class="service-card">
-        <div class="service-num">05</div>
+      <div class="postit">
+        <div class="tape"></div>
+        <div class="postit-num">05</div>
         <h3>Sound Design</h3>
         <p>Balanced audio mixing, SFX layering, and music synchronization for a complete sensory experience.</p>
       </div>
-      <div class="service-card">
-        <div class="service-num">06</div>
+      <div class="postit">
+        <div class="tape"></div>
+        <div class="postit-num">06</div>
         <h3>Cinematic Edits</h3>
         <p>Film-quality storytelling with obsessive attention to pacing, tone, and every frame.</p>
       </div>
     </div>
   </section>
 
-  <!-- TOOLS -->
-  <div class="tools-strip">
-    <span class="tools-label">Tools</span>
-    <div class="tools-row">
-      <span class="tool-pill">DaVinci Resolve</span>
-      <span class="tool-pill">Premiere Pro</span>
-      <span class="tool-pill">After Effects</span>
-      <span class="tool-pill">Photoshop</span>
-      <span class="tool-pill">CapCut Pro</span>
+  <!-- TOOLS TICKER -->
+  <div class="ticker-band">
+    <div class="ticker-inner">
+      <span class="ticker-item"><span class="ticker-dot"></span>DaVinci Resolve</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Premiere Pro</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>After Effects</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Photoshop</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>DaVinci Resolve</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Premiere Pro</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>After Effects</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Photoshop</span>
     </div>
   </div>
 
   <!-- CONTACT -->
   <section id="contact">
     <div class="contact-left">
-      <h2>Let's Work<br>Together</h2>
+      <h2>Let's Work<br><span>Together</span></h2>
       <p>curiouseditor.xyz@gmail.com</p>
       <p>Noida, India · Available for remote projects worldwide</p>
       <div class="contact-social">
@@ -786,9 +586,11 @@
       </div>
     </div>
     <div class="contact-right">
-      <a href="mailto:curiouseditor.xyz@gmail.com" class="contact-btn-main">Get In Touch</a>
+      <a href="mailto:curiouseditor.xyz@gmail.com" class="contact-btn-main">
+        <i class="ti ti-mail"></i> Get In Touch
+      </a>
       <a href="https://wa.me/918368931257" target="_blank" rel="noopener" class="contact-btn-wa">
-        <i class="ti ti-brand-whatsapp" style="font-size:16px;flex-shrink:0;"></i>
+        <i class="ti ti-brand-whatsapp" style="font-size:16px;"></i>
         Chat on WhatsApp
       </a>
     </div>
@@ -803,17 +605,14 @@
   <script>
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('open');
       mobileMenu.classList.toggle('open');
     });
-
     function closeMobileMenu() {
       hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
     }
-
     document.addEventListener('click', (e) => {
       if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
         closeMobileMenu();
