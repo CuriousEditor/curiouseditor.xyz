@@ -196,8 +196,9 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .hero-section { min-height: 480px; padding: 40px 4vw 32px; }
-      .fl-3, .fl-6 { display: none; }
-      .fl-1, .fl-2, .fl-4, .fl-5 { font-size: 14px; }
+      .fl-1, .fl-2, .fl-3, .fl-4, .fl-5, .fl-6 { font-size: 12px; }
+      .fl-3 { right: 2%; top: 18%; left: auto; }
+      .fl-6 { right: 2%; bottom: 22%; left: auto; }
       .hero-title-3d { font-size: clamp(60px,18vw,88px); }
       .eyebrow-tag { font-size: 9px; letter-spacing: 2px; }
       .marquee-item { font-size: 13px; margin: 0 14px; }
@@ -234,10 +235,17 @@
     /* Small mobile (max 400px) */
     @media (max-width: 400px) {
       .hero-title-3d { font-size: 56px; }
-      .services-grid { grid-template-columns: 1fr; margin-left: 44px; }
-      .vert-label { font-size: 40px; }
+      .services-grid { grid-template-columns: 1fr 1fr; margin-left: 40px; gap: 12px; }
+      .vert-label { font-size: 38px; }
       .about-photo-wrap img { width: 80px; }
       .about-greeting { font-size: 22px; }
+      .postit-wrap { padding-top: 48px; }
+      .peek-cards { top: 48px; gap: 3px; padding: 0 6px; }
+      .postit-wrap:hover .peek-cards { top: 0; }
+      .peek-card { width: 52px; height: 46px; }
+      .peek-card-icon { font-size: 14px; }
+      .postit h3 { font-size: 13px; }
+      .postit p { font-size: 10px; }
     }
   </style>
 </head>
