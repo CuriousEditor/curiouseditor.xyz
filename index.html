@@ -248,13 +248,7 @@
       .postit p { font-size: 10px; }
     }
 
-    /* ── GLITCH INTRO ANIMATION ── */
-
-    .hero-title-3d {
-      animation: glitchReveal 2.5s ease forwards 0.3s;
-      opacity: 0;
-    }
-
+    /* ── GLITCH ANIMATION CSS ── */
     @keyframes glitchReveal {
       0%   { opacity: 0; transform: translate(0); }
       10%  { opacity: 1; transform: translate(-4px, 0); color: #ff4444; text-shadow: 3px 3px 0 #00ff99, -3px -3px 0 #ed6806; }
@@ -262,14 +256,31 @@
       14%  { transform: translate(0); color: #ed6806; text-shadow: 3px 3px 0 #a03e00, 6px 6px 0 #5a2000, 9px 9px 0 #1e0800; }
       30%  { transform: translate(-2px, 1px); color: #ff9900; }
       32%  { transform: translate(2px, -1px); color: #ed6806; }
-      34%  { transform: translate(0); color: #ed6806; }
+      34%  { transform: translate(0); }
       50%  { transform: translate(-3px, 0); clip-path: inset(10% 0 40% 0); }
-      52%  { transform: translate(3px, 0);  clip-path: inset(40% 0 10% 0); }
+      52%  { transform: translate(3px, 0); clip-path: inset(40% 0 10% 0); }
       54%  { transform: translate(0); clip-path: inset(0); }
       70%  { transform: translate(-1px, 0); }
       72%  { transform: translate(1px, 0); }
       74%  { transform: translate(0); }
       100% { opacity: 1; transform: translate(0); color: #ed6806; text-shadow: 3px 3px 0 #a03e00, 6px 6px 0 #5a2000, 9px 9px 0 #1e0800; }
+    }
+
+    @keyframes scanlines {
+      0%   { opacity: 0; }
+      10%  { opacity: 1; }
+      55%  { opacity: 0.5; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes labelFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 0.8; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .hero-section::after {
@@ -278,37 +289,29 @@
       background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px);
       pointer-events: none; z-index: 5;
       opacity: 0;
-      animation: scanlines 2.5s ease forwards 0.3s;
-    }
-    @keyframes scanlines {
-      10%  { opacity: 1; }
-      55%  { opacity: 0.5; }
-      100% { opacity: 0; }
     }
 
-    .float-label {
+    /* Glitch active class — applied via JS */
+    .glitch-active .hero-title-3d {
+      animation: glitchReveal 2.5s ease forwards !important;
       opacity: 0;
-      animation: labelFadeIn 0.5s ease forwards;
     }
-    .fl-1 { animation-delay: 2.6s; }
-    .fl-2 { animation-delay: 2.8s; }
-    .fl-3 { animation-delay: 2.7s; }
-    .fl-4 { animation-delay: 3.0s; }
-    .fl-5 { animation-delay: 2.9s; }
-    .fl-6 { animation-delay: 3.1s; }
-
-    @keyframes labelFadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 0.8; transform: translateY(0); }
+    .glitch-active.hero-section::after {
+      animation: scanlines 2.5s ease forwards !important;
     }
-
-    .hero-sub {
+    .glitch-active .float-label {
       opacity: 0;
-      animation: fadeUp 0.6s ease forwards 2.6s;
+      animation: labelFadeIn 0.5s ease forwards !important;
     }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .glitch-active .fl-1 { animation-delay: 2.6s !important; }
+    .glitch-active .fl-2 { animation-delay: 2.8s !important; }
+    .glitch-active .fl-3 { animation-delay: 2.7s !important; }
+    .glitch-active .fl-4 { animation-delay: 3.0s !important; }
+    .glitch-active .fl-5 { animation-delay: 2.9s !important; }
+    .glitch-active .fl-6 { animation-delay: 3.1s !important; }
+    .glitch-active .hero-sub {
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 2.6s !important;
     }
 
   </style>
@@ -542,5 +545,30 @@
       observer.observe(profilePhoto);
     }
   </script>
+
+  <script id="glitch-script">
+    // Run glitch on page load + repeat every 15 seconds
+    function runGlitch() {
+      const hero = document.querySelector('.hero-section');
+      if (!hero) return;
+
+      // Reset — remove class to stop animations
+      hero.classList.remove('glitch-active');
+
+      // Force reflow so animation restarts
+      void hero.offsetWidth;
+
+      // Add class to trigger animations
+      hero.classList.add('glitch-active');
+    }
+
+    // Run on load
+    window.addEventListener('load', () => {
+      runGlitch();
+      // Repeat every 15 seconds
+      setInterval(runGlitch, 15000);
+    });
+  </script>
+
 </body>
 </html>
