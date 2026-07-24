@@ -6,19 +6,19 @@
 <title>Curious Widget</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#2B1B12">
+<meta name="theme-color" content="#000F08">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
   :root{
-    --seal:#2B1B12;
-    --seal-2:#3B2417;
-    --orange:#C1440E;
-    --orange-2:#E06A2D;
-    --sage:#9CAF88;
-    --sage-2:#C3D2B4;
-    --cream:#F4EFE6;
-    --line: rgba(244,239,230,0.12);
+    --seal:#000F08;
+    --seal-2:#04160D;
+    --orange:#FB3640;
+    --orange-2:#FF6169;
+    --sage:#FB3640;
+    --sage-2:#FF9198;
+    --cream:#F5F1ED;
+    --line: rgba(245,241,237,0.14);
   }
   *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
   html,body{
@@ -42,7 +42,7 @@
     align-items:center;
     justify-content:center;
     position:relative;
-    background:var(--seal);
+    background: radial-gradient(circle at 50% 45%, #1A0509 0%, var(--seal) 70%);
     padding: 10px 0 24px;
   }
   .time{
@@ -308,7 +308,7 @@
 
         var box = document.createElement('div');
         box.className = 'checkbox' + (t.done ? ' checked' : '');
-        box.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#2B1B12" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
+        box.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#000F08" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>';
         box.onclick = function(){ tasks[i].done = !tasks[i].done; save(); render(); };
 
         var text = document.createElement('div');
