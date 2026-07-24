@@ -1,0 +1,25 @@
+{
+  "name": "Curious Widget",
+  "short_name": "Widget",
+  "description": "Clock and to-do widget by Curious Editor",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#2B1B12",
+  "theme_color": "#2B1B12",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
