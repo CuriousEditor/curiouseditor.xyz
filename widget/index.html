@@ -211,6 +211,37 @@
     background: radial-gradient(circle at 50% 55%, #1A0509 0%, var(--seal) 70%);
     padding: 10px 10px;
     height:100%;
+    position:relative;
+    overflow:hidden;
+  }
+  .pomo-panel.flash{
+    animation: pomoFlash 0.9s ease-in-out 4;
+  }
+  @keyframes pomoFlash{
+    0%, 100% { background-color: transparent; }
+    50% { background-color: var(--orange); }
+  }
+  .pomo-alert{
+    position:absolute;
+    top:14px;
+    left:50%;
+    transform:translateX(-50%) translateY(-10px);
+    background:var(--orange);
+    color:var(--seal);
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:8px 16px;
+    border-radius:20px;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space:nowrap;
+  }
+  .pomo-alert.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
   }
   .pomo-label{
     font-size:1.8vw;
@@ -323,6 +354,7 @@
   </div>
   <div class="divider"></div>
   <div class="pomo-panel">
+    <div class="pomo-alert" id="pomoAlert">Time's up!</div>
     <div class="pomo-col">
       <div class="pomo-label">Pomodoro</div>
       <div class="pomo-time" id="pomoTime">25:00</div>
@@ -369,6 +401,35 @@
     document.getElementById('pomoMode').textContent = pomoMode === 'focus' ? 'Focus' : 'Break';
     document.getElementById('pomoStart').textContent = pomoRunning ? 'Pause' : 'Start';
   }
+  function playBeep(){
+    try{
+      var ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var now = ctx.currentTime;
+      [0, 0.35, 0.7].forEach(function(offset){
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = 880;
+        gain.gain.setValueAtTime(0.0001, now + offset);
+        gain.gain.exponentialRampToValueAtTime(0.3, now + offset + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.28);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start(now + offset);
+        osc.stop(now + offset + 0.3);
+      });
+    }catch(e){ /* audio not available */ }
+  }
+  function showAlert(msg){
+    var alertEl = document.getElementById('pomoAlert');
+    var panel = document.querySelector('.pomo-panel');
+    alertEl.textContent = msg;
+    alertEl.classList.add('show');
+    panel.classList.add('flash');
+    setTimeout(function(){
+      alertEl.classList.remove('show');
+      panel.classList.remove('flash');
+    }, 3600);
+  }
   function tickPomo(){
     if(pomoRemaining > 0){
       pomoRemaining--;
@@ -377,12 +438,15 @@
       if(pomoMode === 'focus'){
         pomoMode = 'break';
         pomoRemaining = POMO_BREAK;
+        showAlert("Focus done — take a break!");
       } else {
         pomoMode = 'focus';
         pomoRemaining = POMO_WORK;
+        showAlert("Break over — back to focus!");
       }
       renderPomo();
-      try{ if(navigator.vibrate) navigator.vibrate([200,100,200]); }catch(e){}
+      playBeep();
+      try{ if(navigator.vibrate) navigator.vibrate([200,100,200,100,200]); }catch(e){}
     }
   }
   function startPausePomo(){
